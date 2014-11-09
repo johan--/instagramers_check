@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: instagramers
+#
+#  id           :integer          not null, primary key
+#  instagram_id :integer          not null
+#  username     :string(255)      not null
+#  created_at   :datetime
+#  updated_at   :datetime
+#  media        :integer
+#  followed_by  :integer
+#  follows      :integer
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:

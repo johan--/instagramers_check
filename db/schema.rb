@@ -11,18 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141109011151) do
+ActiveRecord::Schema.define(version: 20141109022420) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "instagramers", force: true do |t|
-    t.integer  "instagram_id",  null: false
-    t.string   "username",      null: false
-    t.integer  "num_folloers"
-    t.integer  "num_following"
+    t.integer  "instagram_id", null: false
+    t.string   "username",     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "media"
+    t.integer  "followed_by"
+    t.integer  "follows"
   end
 
   add_index "instagramers", ["instagram_id"], name: "index_instagramers_on_instagram_id", unique: true, using: :btree

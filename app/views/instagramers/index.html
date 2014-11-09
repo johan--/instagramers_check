@@ -4,7 +4,7 @@
         <h1>Check Instagramers</h1>
         <h3>Check how many followers are real</h3>
         <br>
-        <% if @valids.nil? %>
+        <% if @result.nil? %>
           <form role="form" action="<%= instagramers_url %>" method="POST">
             <input type="hidden"
                    name="authenticity_token"
@@ -20,8 +20,8 @@
           </form>
         <% else %>
           <h3>Instagramer <%= @username %> has <%= @num_followers %></h3>
-          <p><%= @valids[0] %> are valid users</p>
-          <p><%= @valids[1] %> are not valid users</p>
+          <p><%= @result[0] %> are valid users</p>
+          <p><%= @result[1] %> are not valid users</p>
         <% end %>
     </div>
 </header>
