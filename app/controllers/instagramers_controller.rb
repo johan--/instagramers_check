@@ -45,7 +45,9 @@ class InstagramersController < ApplicationController
   def get_id(username)
     url = "https://api.instagram.com/v1/users/search?q=[#{username}]&#{access_token}"
     parsed_response = make_request(url)
-    parsed_response["data"].first["id"]
+    parsed_response["data"].select do |instagramer|
+      instagramer["username"] == username
+    end.first["id"]
   end
   
   def is_valid?(id, username)
