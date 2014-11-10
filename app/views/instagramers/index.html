@@ -4,6 +4,7 @@
         <h1>Check Instagramers</h1>
         <h3>Check how many followers are real</h3>
         <br>
+        <%= flash[:errors].join("<br>").html_safe if flash[:errors] %>
         <% if @result.nil? %>
           <form role="form" action="<%= instagramers_url %>" method="POST">
             <input type="hidden"

@@ -12,21 +12,26 @@ class InstagramersController < ApplicationController
     @id = get_id(@username)
     @num_followers = 0
     
-    url = "https://api.instagram.com/v1/users/#{@id}/followed-by?#{access_token}"
-    valids, not_valids = 0, 0
-    while true
-      parsed_response = make_request(url)
-      parsed_response["data"].each do |follower|
-        @num_followers += 1
-        puts "requesting follower ##{@num_followers}"
-        is_valid?(follower["id"], follower["username"]) ? not_valids += 1 : valids += 1
+    if @id.nil?
+      flash[:errors] = ["Username not found!"]
+      redirect_to root_url
+    else
+      url = "https://api.instagram.com/v1/users/#{@id}/followed-by?#{access_token}"
+      valids, not_valids = 0, 0
+      while true
+        parsed_response = make_request(url)
+        parsed_response["data"].each do |follower|
+          @num_followers += 1
+          puts "requesting follower ##{@num_followers}"
+          is_valid?(follower["id"], follower["username"]) ? not_valids += 1 : valids += 1
+        end
+        break if parsed_response["pagination"]["next_url"].nil?
+        url = parsed_response["pagination"]["next_url"]
       end
-      break if parsed_response["pagination"]["next_url"].nil?
-      url = parsed_response["pagination"]["next_url"]
-    end
-    @result = [valids, not_valids]
+      @result = [valids, not_valids]
     
-    render :index
+      render :index
+    end
   end
     
   private
@@ -45,9 +50,12 @@ class InstagramersController < ApplicationController
   def get_id(username)
     url = "https://api.instagram.com/v1/users/search?q=[#{username}]&#{access_token}"
     parsed_response = make_request(url)
-    parsed_response["data"].select do |instagramer|
+    instagramer = parsed_response["data"].select do |instagramer|
       instagramer["username"] == username
-    end.first["id"]
+    end
+    p instagramer
+    return nil if instagramer.empty?
+    instagramer.first["id"]
   end
   
   def is_valid?(id, username)
