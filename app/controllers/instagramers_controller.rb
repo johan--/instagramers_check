@@ -11,25 +11,35 @@ class InstagramersController < ApplicationController
     @username = params.require(:instagramer).permit(:username)[:username]
     @id = get_id(@username)
     @num_followers = 0
+    @not_valids = []
     
     if @id.nil?
       flash[:errors] = ["Username not found!"]
       redirect_to root_url
     else
       url = "https://api.instagram.com/v1/users/#{@id}/followed-by?#{access_token}"
-      valids, not_valids = 0, 0
+      count_valids, count_not = 0, 0
       while true
         parsed_response = make_request(url)
         parsed_response["data"].each do |follower|
           @num_followers += 1
           puts "requesting follower ##{@num_followers}"
-          is_valid?(follower["id"], follower["username"]) ? not_valids += 1 : valids += 1
+          instagramer = get_instagramer(follower["id"], follower["username"])
+          if instagramer.nil?
+            count_valids += 1
+            next
+          elsif instagramer.not_valid?
+            count_not += 1
+            @not_valids << instagramer
+          else
+            count_valids += 1
+          end
         end
         break if parsed_response["pagination"]["next_url"].nil?
         url = parsed_response["pagination"]["next_url"]
       end
-      @result = [valids, not_valids]
-    
+      @result = [count_valids, count_not]
+      
       render :index
     end
   end
@@ -57,20 +67,20 @@ class InstagramersController < ApplicationController
     return nil if instagramer.empty?
     instagramer.first["id"]
   end
-  
-  def is_valid?(id, username)
-    @instagramer = Instagramer.find_by(instagram_id: id)
-    if @instagramer.nil?
+    
+  def get_instagramer(id, username)
+    instagramer = Instagramer.find_by(instagram_id: id)
+    if instagramer.nil?
       url = "https://api.instagram.com/v1/users/#{id}/?#{access_token}"
       parsed_info = make_request(url)
       unless parsed_info
-        @instagramer = Instagramer.create!(username: username,
+        instagramer = Instagramer.create!(username: username,
                                            instagram_id: id)
-        return true
+        return nil
       end
-      @instagramer = Instagramer.create!(instagramer_params(parsed_info))
+      instagramer = Instagramer.create!(instagramer_params(parsed_info))
     end
-    @instagramer.is_valid?
+    instagramer
   end
   
   def instagramer_params(parsed_info)

@@ -16,8 +16,8 @@ class Instagramer < ActiveRecord::Base
   validates :instagram_id, :username, presence: true
   validates :instagram_id, :username, uniqueness: true
   
-  def is_valid?
-    return true if (media.nil? || follows.nil? || followed_by.nil?)
+  def not_valid?
+    return false if (media.nil? || follows.nil? || followed_by.nil?)
     too_many_follows? || too_few_media?
   end
   

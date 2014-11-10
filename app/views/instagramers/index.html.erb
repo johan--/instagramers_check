@@ -23,6 +23,8 @@
           <h3>Instagramer <%= @username %> has <%= @num_followers %></h3>
           <p><%= @result[0] %> are valid users</p>
           <p><%= @result[1] %> are not valid users</p>
+          <h3>Not valid users</h3>
+          <%= render @not_valids %>
         <% end %>
     </div>
 </header>
