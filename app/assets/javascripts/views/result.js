@@ -1,10 +1,11 @@
 InstagramerApp.Views.Result = Backbone.View.extend({
   template: JST["result"],
   subviews: [],
+	className: "container",
   
   initialize: function() {
     this.listenTo(this.collection, "add", this.addFollower);
-    this.listenTo(this.collection, "change", this.finalCount)
+    this.listenTo(this.collection, "change", this.finalCount);
   },
   
   addFollower: function(follower) {
@@ -17,14 +18,10 @@ InstagramerApp.Views.Result = Backbone.View.extend({
   },
   
   finalCount: function() {
-    if (this.finalCountView) {
-      this.finalCountView.numFollowers = this.collection.length;
-      this.finalCountView.numInvalid = this.subviews.length;
-    } else {
+    if (!this.finalCountView) {
       this.finalCountView = new InstagramerApp.Views.FinalCount({
-        numFollowers: this.collection.length,
-        numInvalid: this.subviews.length
-      });      
+        collection: this.collection
+      });  
     }
     
     $('div.final-count').html(this.finalCountView.render().$el);

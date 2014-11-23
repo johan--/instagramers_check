@@ -1,15 +1,25 @@
 InstagramerApp.Views.FinalCount = Backbone.View.extend({
   template: JST["final_count"],
   
-  initialize: function(options) {
-    this.numFollowers = options.numFollowers;
-    this.numInvalid = options.numInvalid;
-  },
-  
+	numFollowers: function() {
+		return this.collection.length;
+	},
+	
+	numInvalid: function() {
+		var invalids = 0;
+		this.collection.each( function(follower) {
+			if (!follower.get('valid')) {
+				invalids++;
+			}
+		});
+		
+		return invalids;
+	},
+	
   render: function() {
     var content = this.template({
-      numFollowers: this.numFollowers,
-      numInvalid: this.numInvalid
+      numFollowers: this.numFollowers(),
+      numInvalid: this.numInvalid()
     });
     this.$el.html(content);
     

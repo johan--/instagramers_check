@@ -1,7 +1,8 @@
 InstagramerApp.Routers.AppRouter = Backbone.Router.extend({
   routes: {
     "": "index",
-    "result": "result"
+    "result": "result",
+		"invalid_username": "invalidUsername"
   },
   
   initialize: function ($rootEl) {
@@ -15,6 +16,11 @@ InstagramerApp.Routers.AppRouter = Backbone.Router.extend({
     });
     this._swapView(index);
   },
+	
+	invalidUsername: function () {
+		var invalidView = new InstagramerApp.Views.InvalidView();
+		this._swapView(invalidView);
+	},
   
   result: function() {
     var resultView = new InstagramerApp.Views.Result({
