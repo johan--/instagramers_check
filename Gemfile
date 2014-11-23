@@ -18,6 +18,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'bootstrap-sass'
 gem 'rest_client'
 gem 'bundler'
+gem 'ejs'
 
 gem 'rails_12factor', group: :production
 

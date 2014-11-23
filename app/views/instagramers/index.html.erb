@@ -1,30 +1,9 @@
 <!-- Header -->
 <header id="top" class="header">
-    <div class="text-vertical-center">
-        <h1>Check Instagramers</h1>
-        <h3>Check how many followers are real</h3>
-        <br>
-        <%= flash[:errors].join("<br>").html_safe if flash[:errors] %>
-        <% if @result.nil? %>
-          <form role="form" action="<%= instagramers_url %>" method="POST">
-            <input type="hidden"
-                   name="authenticity_token"
-                   value="<%= form_authenticity_token %>">
-            <div class="form-group">
-              <input type="text"
-                     class="form-control"
-                     name="instagramer[username]">                 
-            </div>
-            <input type="submit"
-                   class="btn btn-lg btn-dark"
-                   value="Check Followers">
-          </form>
-        <% else %>
-          <h3>Instagramer <%= @username %> has <%= @num_followers %></h3>
-          <p><%= @result[0] %> are valid users</p>
-          <p><%= @result[1] %> are not valid users</p>
-          <h3>Not valid users</h3>
-          <%= render @not_valids %>
-        <% end %>
-    </div>
 </header>
+
+<script>
+$(function() {
+  InstagramerApp.initialize();
+});
+</script>
