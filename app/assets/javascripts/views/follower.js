@@ -7,7 +7,7 @@ InstagramerApp.Views.Follower = Backbone.View.extend({
   },
   
   render: function() {
-    if (this.get('valid')) {
+    if (this.model.get('valid')) {
       this.remove();
     } else {
       var content = this.template({
