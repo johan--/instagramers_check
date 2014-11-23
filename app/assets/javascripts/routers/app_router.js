@@ -6,15 +6,20 @@ InstagramerApp.Routers.AppRouter = Backbone.Router.extend({
   
   initialize: function ($rootEl) {
     this.$rootEl = $rootEl;
+    this.collection = new InstagramerApp.Collections.Followers();
   },
   
   index: function () {
-    var index = new InstagramerApp.Views.IndexView();
+    var index = new InstagramerApp.Views.IndexView({
+      collection: this.collection
+    });
     this._swapView(index);
   },
   
   result: function() {
-    var resultView = new InstagramerApp.Views.ResultIndex();
+    var resultView = new InstagramerApp.Views.Result({
+      collection: this.collection
+    });
     this._swapView(resultView);
   },
   

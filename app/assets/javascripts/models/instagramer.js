@@ -2,8 +2,8 @@ InstagramerApp.Models.Instagramer = Backbone.Model.extend({
   _token: "8413639.1fb234f.c0f10cda7f6e4234bc23be65137d5826",
   
   initialize: function(options) {
+    this.collection = options.collection;
     this.username = options.username;
-    this.collection = new InstagramerApp.Collections.Followers();
     this.lastData = false;
     this.getId();
   },
@@ -11,13 +11,21 @@ InstagramerApp.Models.Instagramer = Backbone.Model.extend({
   getFollowers: function() {
     var apiInstUrl = "https://api.instagram.com/v1/users/";
     apiInstUrl += this.id + "/followed-by?&access_token=" + this._token;
+    this.fetchFollowers(apiInstUrl);
+  },
+  
+  fetchFollowers: function(url) {
     var model = this;
     $.ajax({
-      url: apiInstUrl,
+      url: url,
       type: "GET",
       dataType: "jsonp",
       success: function (jsonResponse) {
         model.createFollowers(jsonResponse.data);
+        var nextUrl = jsonResponse.pagination.next_url;
+        if (nextUrl) {
+          model.fetchFollowers(nextUrl);
+        }
       }
     });
   },
@@ -27,7 +35,6 @@ InstagramerApp.Models.Instagramer = Backbone.Model.extend({
     followersInfo.forEach(function (followerInfo) {
       model.collection.add(followerInfo);
     });
-    debugger
   },
   
   findInstagramer: function (dataArray) {

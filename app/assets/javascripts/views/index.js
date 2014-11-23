@@ -11,7 +11,8 @@ InstagramerApp.Views.IndexView = Backbone.View.extend({
     var $form = $(event.currentTarget);
     var username = $form.serializeJSON().instagramer.username;
     var instagramer = new InstagramerApp.Models.Instagramer({
-      username: username
+      username: username,
+      collection: this.collection
     });
     Backbone.history.navigate("/result", { trigger: true });
   },
