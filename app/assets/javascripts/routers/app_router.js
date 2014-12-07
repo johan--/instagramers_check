@@ -8,11 +8,15 @@ InstagramerApp.Routers.AppRouter = Backbone.Router.extend({
   initialize: function ($rootEl) {
     this.$rootEl = $rootEl;
     this.collection = new InstagramerApp.Collections.Followers();
+    this.model = new InstagramerApp.Models.Instagramer({
+      collection: this.collection
+    });
   },
   
   index: function () {
     var index = new InstagramerApp.Views.IndexView({
-      collection: this.collection
+      collection: this.collection,
+      model: this.model
     });
     this._swapView(index);
   },
@@ -24,7 +28,8 @@ InstagramerApp.Routers.AppRouter = Backbone.Router.extend({
   
   result: function() {
     var resultView = new InstagramerApp.Views.Result({
-      collection: this.collection
+      collection: this.collection,
+      model: this.model
     });
     this._swapView(resultView);
   },

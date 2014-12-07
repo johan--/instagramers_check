@@ -21,14 +21,16 @@ InstagramerApp.Views.Result = Backbone.View.extend({
     if (!this.finalCountView) {
       this.finalCountView = new InstagramerApp.Views.FinalCount({
         collection: this.collection
-      });  
+      });
     }
     
     $('div.final-count').html(this.finalCountView.render().$el);
   },
   
   render: function () {
-    var content = this.template();
+    var content = this.template({
+      instagramer: this.model
+    });
     this.$el.html(content);
 
     return this;

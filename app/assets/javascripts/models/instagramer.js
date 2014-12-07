@@ -3,9 +3,7 @@ InstagramerApp.Models.Instagramer = Backbone.Model.extend({
   
   initialize: function(options) {
     this.collection = options.collection;
-    this.username = options.username;
     this.lastData = false;
-    this.getId();
   },
   
   getFollowers: function() {
@@ -41,7 +39,7 @@ InstagramerApp.Models.Instagramer = Backbone.Model.extend({
     var instagramer;
     var model = this;
     dataArray.forEach(function (user) {
-      if (user.username === model.username) {
+      if (user.username === model.get('username')) {
         instagramer = user;
       }
     })
@@ -54,7 +52,7 @@ InstagramerApp.Models.Instagramer = Backbone.Model.extend({
   
   getId: function () {
     var apiInstUrl = "https://api.instagram.com/v1/users/search?q=[";
-    apiInstUrl += this.username + "]&access_token=" + this._token;
+    apiInstUrl += this.get('username') + "]&access_token=" + this._token;
     var model = this;
     $.ajax({
       url: apiInstUrl,
