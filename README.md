@@ -10,3 +10,7 @@ Currently, we consider an invalid user when all these conditions are true:
 * Is following more than 3000 instagramers
 
 Check it out in the [link](instagramer-check.herokuapp.com)
+
+![Home](https://raw.githubusercontent.com/lmuntaner/instagramers_check/master/app/assets/images/screenshot_home.png)
+
+![Home](https://raw.githubusercontent.com/lmuntaner/instagramers_check/master/app/assets/images/screenshot_result.png)
