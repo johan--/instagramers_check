@@ -1,9 +1,12 @@
 #Instagram Followers Check
 
-This is a rails project that checks the followers of an instagram user and returns how many of them are valid and invalid users.
+This is a backbone project that checks the followers of an instagram user and returns how many of them are valid and invalid users.
 
-Currently, we consider an invalid user when:
-* More than 400 followers and less than 6 pictures uploaded
-* Following to more than 3000 instagramers
+It is intended to find the instagramers that buy bots to follow them.
+
+Currently, we consider an invalid user when all these conditions are true:
+* Has more than 400 followers
+* Has Less than 6 pictures uploaded
+* Is following more than 3000 instagramers
 
 Check it out in the [link](instagramer-check.herokuapp.com)
