@@ -1,6 +1,6 @@
 InstagramerApp.Models.Instagramer = Backbone.Model.extend({
-  _token: "8413639.1fb234f.c0f10cda7f6e4234bc23be65137d5826",
-  
+  _token: "8413639.1fb234f.7e1a75214c424cf7a4b91f4d5522068d",
+    
   initialize: function(options) {
     this.collection = options.collection;
     this.lastData = false;
@@ -52,8 +52,8 @@ InstagramerApp.Models.Instagramer = Backbone.Model.extend({
   },
   
   getId: function () {
-    var apiInstUrl = "https://api.instagram.com/v1/users/search?q=[";
-    apiInstUrl += this.get('username') + "]&access_token=" + this._token;
+    var apiInstUrl = "https://api.instagram.com/v1/users/search?q=";
+    apiInstUrl += this.get('username') + "&access_token=" + this._token;
     var model = this;
     $.ajax({
       url: apiInstUrl,
