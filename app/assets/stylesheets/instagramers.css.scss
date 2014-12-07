@@ -84,6 +84,32 @@ div.container {
 }
 
 div.invalids-container {
-	background-color: #fff;
+  margin-top: 20px;
+	background-color: #eee;
 	border-radius: 5px;
+  padding: 15px;
+}
+
+div.invalids-container h3 {
+  margin-top: 5px;
+}
+
+div.list-info-instagramer {
+  float: right;
+  margin-top: 120px;
+}
+
+ul.followers {
+  margin-top: 15px;
+}
+
+/* Invalid User  */
+
+div.container-follower-image img {
+  height: 100px;
+}
+
+div.list-info-follower {
+  float: right;
+  margin-top: 70px;
 }

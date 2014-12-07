@@ -1,6 +1,7 @@
 InstagramerApp.Views.Follower = Backbone.View.extend({
   tagName: "li",
   template: JST["follower"],
+  className: "list-group-item",
   
   initialize: function(options) {
     this.listenTo(this.model, "change", this.render);

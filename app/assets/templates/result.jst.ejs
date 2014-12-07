@@ -1,10 +1,20 @@
-<div class="col-xs-4">
-	<h1>This is the result</h1>
-	<div class="final-count"></div>
-  <a href="/">Back</a>
+<div class="row">
+  <div class="col-xs-8 col-xs-offset-2 row">
+    <div class="container-profile-picture col-xs-4">
+      <img src="<%= instagramer.get('profile_picture') %>"
+           class="img-thumbnail">
+      <h3><%= instagramer.get('username')%></h3>
+      <p>Bio: <%= instagramer.get('bio') %>
+    </div>
+    <div class="final-count col-xs-8">
+    </div>
+  </div>
 </div>
-<div class="col-xs-4 invalids-container">
-	<h3>These many are invalid users</h3>
-	<ul class="followers">
-	</ul>
+
+<div class="row">
+  <div class="col-xs-6 col-xs-offset-3 invalids-container">
+  	<h3>Invalid users</h3>
+  	<ul class="followers list-group">
+  	</ul>
+  </div>
 </div>

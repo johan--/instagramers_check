@@ -47,6 +47,7 @@ InstagramerApp.Models.Instagramer = Backbone.Model.extend({
 			Backbone.history.navigate("/invalid_username", { trigger : true });
 		}
     this.set(instagramer)
+    this.trigger('updated');
     this.getFollowers();
   },
   

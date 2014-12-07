@@ -4,6 +4,7 @@ InstagramerApp.Views.Result = Backbone.View.extend({
 	className: "container",
   
   initialize: function() {
+    this.listenTo(this.model, "updated", this.render);
     this.listenTo(this.collection, "add", this.addFollower);
     this.listenTo(this.collection, "change", this.finalCount);
   },

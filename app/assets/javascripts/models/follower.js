@@ -6,7 +6,7 @@ InstagramerApp.Models.Follower = Backbone.Model.extend({
   },
   
   isValid: function() {
-		// return this.get("followed_by") > 50;
+    // return this.get("followed_by") > 50;
     return !(this.get("media") < 6 &&
               this.get("follows") > 3000 &&
               this.get("followed_by") > 400);

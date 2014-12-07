@@ -1,5 +1,22 @@
-Username: <%= follower.escape('username') %><br>
-Valid?: <%= follower.escape('valid') %><br>
-Media: <%= follower.escape('media') %><br>
-Follows: <%= follower.escape('follows') %><br>
-Followed_by: <%= follower.escape('followed_by') %>
+<div class="row">
+  <div class="container-follower-image col-xs-3">
+    <img src="<%= follower.get('profile_picture') %>"
+         class="img-circle">
+    <h5 class="text-center"><%= follower.escape('username') %></h5>
+  </div>
+  <div class="container-info-follower col-xs-9">
+    <div class="btn-group list-info-follower" role="group">
+      <button type="button" class="btn btn-default btn-sm">
+        Media: <%= follower.escape('media') %>
+      </button>
+      <button type="button" class="btn btn-default btn-sm">
+        Follows: <%= follower.escape('follows') %>
+      </button>
+      <button type="button" class="btn btn-default btn-sm">
+        Followed_by: <%= follower.escape('followed_by') %>
+      </button>
+    </div>
+  </div>  
+</div>
+
+
