@@ -8,7 +8,7 @@ InstagramerApp.Views.IndexView = Backbone.View.extend({
 	
 	initialize: function (options) {
 		this.href = "https://instagram.com/oauth/authorize/?client_id=3a1550c52a0645bdb3ab2b23cac5f71f&redirect_uri=http://instagramer-check.herokuapp.com/&response_type=token";
-		this.token = window.Token;
+		this.token = this.Token;
 	},
   
   checkFollowers: function (event) {

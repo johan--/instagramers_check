@@ -7,6 +7,5 @@ window.InstagramerApp = {
     var $rootEl = $('#top');
     new this.Routers.AppRouter($rootEl);
     Backbone.history.start();
-		window.Token = "";
   }
 };

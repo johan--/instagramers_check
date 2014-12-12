@@ -8,6 +8,7 @@ InstagramerApp.Routers.AppRouter = Backbone.Router.extend({
   
   initialize: function ($rootEl) {
     this.$rootEl = $rootEl;
+		this.token = "";
     this.collection = new InstagramerApp.Collections.Followers();
     this.model = new InstagramerApp.Models.Instagramer({
       collection: this.collection,
@@ -17,10 +18,10 @@ InstagramerApp.Routers.AppRouter = Backbone.Router.extend({
   
   index: function (token) {
 		if (token) {
-			window.Token = token;
+			this.token = token;
+			this.model.token = this.token;
 		}
 		
-		console.log("this is the token in the router: " + window.Token);
     var index = new InstagramerApp.Views.IndexView({
       collection: this.collection,
       model: this.model
