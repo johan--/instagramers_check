@@ -5,9 +5,18 @@
   <div class="form-group">
     <input type="text"
            class="form-control"
-           name="instagramer[username]">                 
+           name="instagramer[username]"
+					 data-toggle="tooltip" data-placement="right" title="You can perform the search now">                 
   </div>
   <input type="submit"
          class="btn btn-lg btn-dark"
          value="Check Followers">
 </form>
+
+<% if (hasToken) { %>
+	<script type='text/javascript'>
+	 $(function () {
+	   $('[data-toggle="tooltip"]').tooltip('show')
+	 })
+	</script>
+<% } %>

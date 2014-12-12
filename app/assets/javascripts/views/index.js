@@ -27,7 +27,10 @@ InstagramerApp.Views.IndexView = Backbone.View.extend({
   },
   
   render: function() {
-    var content = this.template();
+		var hasToken = (this.token != "");
+    var content = this.template({
+    	hasToken: hasToken
+    });
     this.$el.html(content);
     
     return this;

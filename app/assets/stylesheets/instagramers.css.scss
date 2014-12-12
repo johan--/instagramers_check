@@ -77,6 +77,12 @@ input[type=text] {
     -o-background-size: cover;
 }
 
+/* Body */
+
+p.signed-in-msg {
+	color: red;
+}
+
 /* Result */
 
 div.container {
