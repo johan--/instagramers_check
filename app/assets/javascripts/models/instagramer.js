@@ -1,5 +1,4 @@
 InstagramerApp.Models.Instagramer = Backbone.Model.extend({
-  // _token: "8413639.1fb234f.7e1a75214c424cf7a4b91f4d5522068d",
     
   initialize: function(options) {
     this.collection = options.collection;
