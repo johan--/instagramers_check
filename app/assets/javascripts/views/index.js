@@ -12,11 +12,9 @@ InstagramerApp.Views.IndexView = Backbone.View.extend({
   
   checkFollowers: function (event) {
     event.preventDefault();
-		console.log("Token: " + InstagramerApp.Token);
-		if (InstagramerApp.Token == "") {
+		if (window.Token == "") {
 			window.open(this.href, '_self'); // "width=400, height=230, left=300, top=300");
 		} else {
-			console.log("True: " + InstagramerApp.Token);
 	    var $form = $(event.currentTarget);
 	    var username = $form.serializeJSON().instagramer.username;
 	    this.model.set({
