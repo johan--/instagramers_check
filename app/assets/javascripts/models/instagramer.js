@@ -54,6 +54,8 @@ InstagramerApp.Models.Instagramer = Backbone.Model.extend({
   
   getId: function () {
     var apiInstUrl = "https://api.instagram.com/v1/users/search?q=";
+		console.log("token in getId: " + this.Token);
+		console.log("token from window in getId: " + this.Token);
     apiInstUrl += this.get('username') + "&access_token=" + this.Token;
     var model = this;
     $.ajax({
