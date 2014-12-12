@@ -2,6 +2,7 @@ InstagramerApp.Models.Follower = Backbone.Model.extend({
   
   initialize: function(options) {
     this.fetchApi();
+		this.token = window.Token
   },
   
   isValid: function() {
@@ -13,7 +14,7 @@ InstagramerApp.Models.Follower = Backbone.Model.extend({
   
   fetchApi: function() {
     var apiInstUrl = "https://api.instagram.com/v1/users/";
-    apiInstUrl += this.id + "/?access_token=" + window.Token;
+    apiInstUrl += this.id + "/?access_token=" + this.Token;
     var model = this;
     $.ajax({
       url: apiInstUrl,
