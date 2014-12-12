@@ -2,18 +2,23 @@ InstagramerApp.Routers.AppRouter = Backbone.Router.extend({
   routes: {
     "": "index",
     "result": "result",
-		"invalid_username": "invalidUsername"
+		"invalid_username": "invalidUsername",
+		"access_token=:token": "index"
   },
   
   initialize: function ($rootEl) {
     this.$rootEl = $rootEl;
     this.collection = new InstagramerApp.Collections.Followers();
     this.model = new InstagramerApp.Models.Instagramer({
-      collection: this.collection
+      collection: this.collection,
+			token: this.token
     });
   },
   
-  index: function () {
+  index: function (token) {
+		if (token) {
+			InstagramerApp.Token = token;
+		}
     var index = new InstagramerApp.Views.IndexView({
       collection: this.collection,
       model: this.model

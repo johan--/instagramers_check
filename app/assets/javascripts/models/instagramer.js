@@ -1,5 +1,5 @@
 InstagramerApp.Models.Instagramer = Backbone.Model.extend({
-  _token: "8413639.1fb234f.7e1a75214c424cf7a4b91f4d5522068d",
+  // _token: "8413639.1fb234f.7e1a75214c424cf7a4b91f4d5522068d",
     
   initialize: function(options) {
     this.collection = options.collection;
@@ -8,7 +8,7 @@ InstagramerApp.Models.Instagramer = Backbone.Model.extend({
   
   getFollowers: function() {
     var apiInstUrl = "https://api.instagram.com/v1/users/";
-    apiInstUrl += this.id + "/followed-by?&access_token=" + this._token;
+    apiInstUrl += this.id + "/followed-by?&access_token=" + InstagramerApp.Token;
     this.fetchFollowers(apiInstUrl);
   },
   
@@ -30,6 +30,7 @@ InstagramerApp.Models.Instagramer = Backbone.Model.extend({
   
   createFollowers: function (followersInfo) {
     var model = this;
+		followersInfo.token = InstagramerApp.Token;
     followersInfo.forEach(function (followerInfo) {
       model.collection.add(followerInfo);
     });
@@ -52,8 +53,9 @@ InstagramerApp.Models.Instagramer = Backbone.Model.extend({
   },
   
   getId: function () {
+		debugger;
     var apiInstUrl = "https://api.instagram.com/v1/users/search?q=";
-    apiInstUrl += this.get('username') + "&access_token=" + this._token;
+    apiInstUrl += this.get('username') + "&access_token=" + InstagramerApp.Token;
     var model = this;
     $.ajax({
       url: apiInstUrl,
