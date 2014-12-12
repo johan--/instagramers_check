@@ -16,6 +16,7 @@ InstagramerApp.Routers.AppRouter = Backbone.Router.extend({
   },
   
   index: function (token) {
+		console.log("this is the token in the router: " + token);
 		if (token) {
 			InstagramerApp.Token = token;
 		}
