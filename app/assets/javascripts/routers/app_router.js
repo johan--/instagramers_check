@@ -19,6 +19,8 @@ InstagramerApp.Routers.AppRouter = Backbone.Router.extend({
 		if (token) {
 			window.Token = token;
 		}
+		
+		console.log("this is the token in the router: " + window.Token);
     var index = new InstagramerApp.Views.IndexView({
       collection: this.collection,
       model: this.model
