@@ -24,7 +24,8 @@ InstagramerApp.Routers.AppRouter = Backbone.Router.extend({
 		
     var index = new InstagramerApp.Views.IndexView({
       collection: this.collection,
-      model: this.model
+      model: this.model,
+			token: this.token
     });
     this._swapView(index);
   },
